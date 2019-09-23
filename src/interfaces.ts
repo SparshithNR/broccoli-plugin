@@ -30,6 +30,12 @@ export interface PluginOptions {
    * information about which input has changed since the last build. Defaults to false.
    */
   trackInputChanges?: boolean;
+
+  /**
+   * If true, Proxy to fs is enabled to provided to plugins to perform all file operations without needing to pass the absolute path, by just using
+   * plugin.input.fs.readFileSync/plugin.output.fs.writeFileSync. Defaults to false.
+   */
+  inoutFacade?: boolean;
 }
 
 export type MapSeriesIterator<T> = (item: T, index: number, array: T[]) => Promise<T> | T;

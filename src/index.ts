@@ -16,6 +16,7 @@ const BROCCOLI_FEATURES = Object.freeze({
   needsCacheFlag: true,
   volatileFlag: true,
   trackInputChangesFlag: true,
+  inoutFacadeFlag: true,
 });
 
 const PATHS = new WeakMap();
@@ -62,6 +63,7 @@ class Plugin implements TransformNode {
   private _instantiationStack: string;
   private _readCompatError?: Error;
   private _readCompat?: ReadCompat | false;
+  private _inoutFacade: boolean;
   private rebuild?: () => void;
 
   __broccoliFeatures__: FeatureSet;
@@ -108,6 +110,7 @@ class Plugin implements TransformNode {
     this._needsCache = options.needsCache != null ? !!options.needsCache : true;
 
     this._volatile = !!options.volatile;
+    this._inoutFacade = !!options.inoutFacade;
     this._trackInputChanges = !!options.trackInputChanges;
 
     this._checkOverrides();
@@ -180,6 +183,7 @@ class Plugin implements TransformNode {
       needsCache: this._needsCache,
       volatile: this._volatile,
       trackInputChanges: this._trackInputChanges,
+      inoutFacade: this._inoutFacade,
     };
 
     // Go backwards in time, removing properties from nodeInfo if they are not
@@ -194,6 +198,10 @@ class Plugin implements TransformNode {
 
     if (!builderFeatures.trackInputChangesFlag) {
       delete nodeInfo.trackInputChanges;
+    }
+
+    if (!builderFeatures.inoutFacadeFlag) {
+      delete nodeInfo.inoutFacade;
     }
 
     return nodeInfo;

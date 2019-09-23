@@ -54,6 +54,7 @@ Call this base class constructor from your subclass constructor.
     always be called regardless if the inputNodes have changed. Defaults to `false`.
   - `trackInputChanges` : If `true`, a change object will be passed to the build method which contains
     information about which input has changed since the last build. Defaults to `false`.
+  - `inoutFacade` : If true, Proxy to fs is enabled to provided to plugins to perform all file operations without needing to pass the absolute path. See example [here](#inoutFaced).
 
 ### `Plugin.prototype.build()`
 
@@ -121,3 +122,30 @@ may have the following optional properties in addition to the standard
   `this.inputPaths`. (The name `treeDir` is for historical reasons.)
 - `line`: Line in which the error occurred (one-indexed)
 - `column`: Column in which the error occurred (zero-indexed)
+
+### inoutFacade
+
+```js
+const Plugin = require('broccoli-plugin');
+
+class MyPlugin extends Plugin {
+  constructor(inputNodes, options = {}) {
+    super(inputNodes, {
+      annotation: options.annotation,
+      inoutFacade: true,
+    });
+  }
+
+  build() {
+    // Read files from this.inputPaths, and write files to this.outputPath.
+    // Silly example:
+
+    // Read 'foo.txt' from the third input node
+    const input = this.input.fs.readFileSync(`foo.txt`);
+    const output = someCompiler(input);
+
+    // Write to 'bar.txt' in this node's output
+    this.output.fs.writeFileSync(`bar.txt`, output);
+  }
+}
+```
