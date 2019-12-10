@@ -220,10 +220,10 @@ broccoli-node-info@^2.1.0:
   resolved "https://registry.yarnpkg.com/broccoli-node-info/-/broccoli-node-info-2.1.0.tgz#ca84560e8570ff78565bea1699866ddbf58ad644"
   integrity sha512-l6qDuboJThHfRVVWQVaTs++bFdrFTP0gJXgsWenczc1PavRVUmL1Eyb2swTAXXMpDOnr2zhNOBLx4w9AxkqbPQ==
 
-broccoli-output-wrapper@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/broccoli-output-wrapper/-/broccoli-output-wrapper-3.1.0.tgz#21602b01cea2525336d85e3d3de50e640ff1594c"
-  integrity sha512-4CJhyYX5Ls4zeOm+lI5ECXlvd61F8oUxxYz6lUs9GtEnv/gF2WDxoBhxPDEL93xv7XBD9+/aavHBi2Eimob+Ag==
+broccoli-output-wrapper@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/broccoli-output-wrapper/-/broccoli-output-wrapper-3.1.1.tgz#d5f2c04b1259fd1df72e4d9951df2d23f202d301"
+  integrity sha512-iIA5EJ7jmG7rmAFerJ1Fi57L7NICN6ErVhw8ClLDVBrLQYXK0uWicwXL2/2HWlGIL0oFFrIiw+/W0BNVib6DSA==
   dependencies:
     fs-extra "^8.1.0"
     heimdalljs-logger "^0.1.10"
